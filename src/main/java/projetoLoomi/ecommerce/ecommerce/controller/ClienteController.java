@@ -16,10 +16,12 @@ public class ClienteController {
     @Autowired
     private ClienteRepository repository;
 
-    @GetMapping
+    @GetMapping("clientes")
     public List<Cliente> getAll(){
 
         List<Cliente> ClienteList = repository.findAll();
         return ClienteList;
     }
+
+
 }
