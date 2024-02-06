@@ -1,2 +1,4 @@
-package projetoLoomi.ecommerce.ecommerce.controller;public class PedidoController {
+package projetoLoomi.ecommerce.ecommerce.controller;
+
+public class PedidoController {
 }
