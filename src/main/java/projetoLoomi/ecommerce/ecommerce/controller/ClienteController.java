@@ -3,14 +3,14 @@ package projetoLoomi.ecommerce.ecommerce.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import projetoLoomi.ecommerce.ecommerce.domain.Cliente;
-import projetoLoomi.ecommerce.ecommerce.repository.ClienteRepository;
+import projetoLoomi.ecommerce.ecommerce.domain.entity.Cliente;
+import projetoLoomi.ecommerce.ecommerce.domain.repository.ClienteRepository;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("cliente")
+@RequestMapping("/cliente")
 public class ClienteController {
 
     @Autowired

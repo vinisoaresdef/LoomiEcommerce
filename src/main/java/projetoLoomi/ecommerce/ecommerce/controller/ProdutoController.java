@@ -4,8 +4,8 @@ package projetoLoomi.ecommerce.ecommerce.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import projetoLoomi.ecommerce.ecommerce.domain.Produto;
-import projetoLoomi.ecommerce.ecommerce.repository.ProdutoRepository;
+import projetoLoomi.ecommerce.ecommerce.domain.entity.Produto;
+import projetoLoomi.ecommerce.ecommerce.domain.repository.ProdutoRepository;
 
 import java.util.List;
 import java.util.Optional;

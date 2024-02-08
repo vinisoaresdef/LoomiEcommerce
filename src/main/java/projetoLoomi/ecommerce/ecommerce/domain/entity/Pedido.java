@@ -1,12 +1,10 @@
-package projetoLoomi.ecommerce.ecommerce.domain;
+package projetoLoomi.ecommerce.ecommerce.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.security.Timestamp;
 
 @Entity(name = "pedidos")
 @Table(name = "pedidos")

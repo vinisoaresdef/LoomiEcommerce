@@ -4,7 +4,7 @@ package projetoLoomi.ecommerce.ecommerce.dtos;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import projetoLoomi.ecommerce.ecommerce.domain.Usuario;
+import projetoLoomi.ecommerce.ecommerce.domain.entity.Usuario;
 
 
 @Data

@@ -1,4 +1,4 @@
-package projetoLoomi.ecommerce.ecommerce.domain;
+package projetoLoomi.ecommerce.ecommerce.domain.entity;
 
 
 import jakarta.persistence.*;
