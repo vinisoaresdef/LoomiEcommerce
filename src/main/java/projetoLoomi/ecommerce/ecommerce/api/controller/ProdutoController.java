@@ -1,4 +1,4 @@
-package projetoLoomi.ecommerce.ecommerce.controller;
+package projetoLoomi.ecommerce.ecommerce.api.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
