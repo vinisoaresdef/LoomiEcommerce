@@ -1,4 +1,4 @@
-package projetoLoomi.ecommerce.ecommerce.model;
+package projetoLoomi.ecommerce.ecommerce.domain;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -16,13 +16,18 @@ public class Produto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+    private Long produto_id;
+    @Column(name = "nome_produto")
     private String nomeProduto;
+    @Column(name = "descricao")
     private String descricao;
-    private float preco;
+    @Column(name = "preco")
+    private int preco;
+    @Column(name = "qtd_estoque")
     private int qtdEstoque;
-    private Timestamp dataCriacao;
-    private Timestamp dataAtualizacao;
+    @Column(name = "data_criacao")
+    private String dataCriacao;
+    @Column(name = "data_atualizacao")
+    private String dataAtualizacao;
 
 }
