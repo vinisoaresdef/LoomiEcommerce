@@ -4,12 +4,14 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.security.Timestamp;
 
 @Table(name = "produtos")
 @Entity(name = "produtos")
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Produto {

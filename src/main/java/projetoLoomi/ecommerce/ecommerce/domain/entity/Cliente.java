@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.w3c.dom.Text;
 
 @Table(name = "clientes")
 @Entity(name = "clientes")
@@ -18,7 +19,6 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long cliente_id;
     @OneToOne
-    @MapsId
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
     @Column(name = "nome_completo")
@@ -30,8 +30,8 @@ public class Cliente {
     @Column(name = "status")
     private String status;
     @Column(name = "data_criacao")
-    private String dataCriacao;
+    private String dataCriacao;        //TODO: Corrigir para TimeStamp e avaliar no banco.
     @Column(name = "data_atualizacao")
-    private String dataAtualizacao;
+    private String dataAtualizacao;    //TODO: Corrigir para TimeStamp e avaliar no banco.
 
 }
