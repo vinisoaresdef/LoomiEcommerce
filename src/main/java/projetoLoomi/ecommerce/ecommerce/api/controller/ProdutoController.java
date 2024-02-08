@@ -1,60 +1,82 @@
 package projetoLoomi.ecommerce.ecommerce.api.controller;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import projetoLoomi.ecommerce.ecommerce.api.mapper.ProdutoMapper;
+
+import projetoLoomi.ecommerce.ecommerce.api.request.ProdutoRequest;
+
+import projetoLoomi.ecommerce.ecommerce.api.response.ProdutoResponse;
+
 import projetoLoomi.ecommerce.ecommerce.domain.entity.Produto;
-import projetoLoomi.ecommerce.ecommerce.domain.repository.ProdutoRepository;
+
+
+import projetoLoomi.ecommerce.ecommerce.domain.service.ProdutoService;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("produtos")
+@RequiredArgsConstructor
+@RequestMapping("/produtos")
 public class ProdutoController {
 
-    @Autowired
-    private ProdutoRepository produtoRepository;
+    private final ProdutoService service;
+    //Evitar usar Repository dentro do controller, por isso usei o ClienteService
 
-    @GetMapping("listarTodos")
-    public ResponseEntity getAllProducts() {
-        List<Produto> produtos = produtoRepository.findAll();
-        return ResponseEntity.ok(produtos);
+    private final ProdutoMapper mapper;
+
+    @PostMapping("/salvar")
+    public ResponseEntity<ProdutoResponse> salvar(@Valid @RequestBody ProdutoRequest request) {
+        Produto produto = mapper.toProduto(request);
+        Produto produtoSalvo = service.salvar(produto);
+        ProdutoResponse produtoResponse = mapper.toProdutoResponse(produtoSalvo);
+        return ResponseEntity.status(HttpStatus.CREATED).body(produtoResponse);
     }
 
-    @PostMapping("cadastroProduto")
-    public ResponseEntity createProduct(@RequestBody Produto produto) {
-       Produto produtoSalvo = produtoRepository.save(produto);
-        return ResponseEntity.ok("Produto criado: " + produtoSalvo);
+    @GetMapping("/listarTodos")
+    public ResponseEntity<List<ProdutoResponse>> listarTodos(){
+        List<Produto> produtos = service.listarTodos();
+        List<ProdutoResponse> produtoResponses = mapper.toProdutoResponseList(produtos);
+        return ResponseEntity.status(HttpStatus.OK).body(produtoResponses);
     }
 
-    @PutMapping("atualizarProduto/{id}")
-    public ResponseEntity<Produto> updateProduct(@PathVariable Long id, @RequestBody Produto produto) {
-        Optional<Produto> produtoOptional = produtoRepository.findById(id);
-        if (produtoOptional.isPresent()) {
-            Produto produtoExistente = produtoOptional.get();
-            //produtoExistente.setNomeProduto(produto.getNomeProduto());
-            //produtoExistente.setDescricao(produto.getDescricao());
-            //produtoExistente.setPreco(produto.getPreco());
-            //produtoExistente.setQtdEstoque(produto.getQtdEstoque());
-            //produtoExistente.setDataAtualizacao(produto.getDataAtualizacao());
-            Produto produtoAtualizado = produtoRepository.save(produtoExistente); // Atualizando o produto no banco de dados
-            return ResponseEntity.ok(produtoAtualizado);
-        } else {
+    @PutMapping("/atualizar/{produto_id}")
+    public ResponseEntity<ProdutoResponse> atualizar(@PathVariable Long produto_id, @RequestBody ProdutoRequest request) {
+        Produto produto = mapper.toProduto(request);
+        Produto produtoAtualizado = service.atualizar(produto_id, produto);
+        ProdutoResponse produtoResponse = mapper.toProdutoResponse(produtoAtualizado);
+        return ResponseEntity.status(HttpStatus.OK).body(produtoResponse);
+    }
+
+    @GetMapping("/{produto_id}")
+    public ResponseEntity<ProdutoResponse> buscarPorId(@PathVariable Long produto_id){
+        Optional<Produto> optProduto = service.buscarPorId(produto_id);
+        if(optProduto.isEmpty()){
             return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(mapper.toProdutoResponse(optProduto.get()));
+    }
+
+    @DeleteMapping("/deletar/{produto_id}")
+    public ResponseEntity<Void> deletar(@PathVariable Long produto_id) {
+        boolean excluido = service.deletar(produto_id);
+        if (excluido) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
 
-    @DeleteMapping("deletarProduto/{id}")
-    public ResponseEntity<String> deleteProduct(@PathVariable Long id) {
-        Optional<Produto> produtoOptional = produtoRepository.findById(id);
-        if (produtoOptional.isPresent()) {
-            produtoRepository.deleteById(id);
-            return ResponseEntity.ok("Produto excluído com sucesso!");
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
+
+
+
+
 
 }

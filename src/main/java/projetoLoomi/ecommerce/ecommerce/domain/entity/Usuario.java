@@ -16,13 +16,23 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long usuario_id;
-    @OneToOne
-    private Cliente cliente;
     @Column(name = "nome")
     private String nome;
+    @Column(name = "email")
+    private String email;
+    @Column(name = "senha")
+    private String senha;
+    @Column(name = "tipo")
+    private String tipo;
     @Column(name = "data_criacao")
-    private String dataCriacao;
+    private String dataCriacao;          //TODO: Corrigir para TimeStamp e avaliar no banco.
     @Column(name = "data_Atualizacao")
-    private String dataAtualizacao;
+    private String dataAtualizacao;      //TODO: Corrigir para TimeStamp e avaliar no banco.
+
 
 }
+
+enum tipo {
+    ADMIN,
+    CLIENTE
+};
