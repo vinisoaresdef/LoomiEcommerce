@@ -24,7 +24,7 @@ public class Pedido {
     @Column(name = "status")
     private StatusPedido status;
     @Column(name  = "data_pedido")
-    private String dataPedido;
+    private String dataPedido;   //FIXME: Não pode ser String aqui.
     @Column(name = "total_pedido")
     private int totalPedido;
 

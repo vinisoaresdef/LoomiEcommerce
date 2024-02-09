@@ -20,20 +20,7 @@ public class ClienteService {
 
     public Cliente salvar(Cliente cliente) {
 
-        //TODO: avaliar se já tem um usuario cadastrado para um cliente diferente. (Regra de negócio)
-
-     //   boolean existeUsuario = false;
-     //   Optional<Cliente> optCliente = repository.findByUserId(cliente.getUsuario().getCliente());
-
-     //    if(optCliente.isPresent()) {
-     //       if(!optCliente.get().getCliente_id().equals(cliente.getCliente_id()));{
-     //           existeUsuario = true;
-     //       }
-     //   }
-     //   if(existeUsuario){
-     //       throw new BusinessException("Usuario já existe");
-     //   }
-
+        //TODO: avaliar se já tem um usuario cadastrado para um cliente diferente.
         return repository.save(cliente);
 
     }
