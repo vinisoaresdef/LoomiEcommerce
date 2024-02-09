@@ -27,13 +27,13 @@ public class Usuario implements UserDetails {
     @Column(name = "senha")
     private String senha;
     @Column(name = "tipo")
-    private tipo tipo;
+    private Tipo tipo;
     @Column(name = "data_criacao")
     private String dataCriacao;          //TODO: Corrigir para TimeStamp e avaliar no banco.
     @Column(name = "data_Atualizacao")
     private String dataAtualizacao;      //TODO: Corrigir para TimeStamp e avaliar no banco.
 
-    public Usuario(String nome, String senha, tipo tipo){
+    public Usuario(String nome, String senha, Tipo tipo){
         this.nome = nome;
         this.senha = senha;
         this.tipo = tipo;
@@ -42,8 +42,8 @@ public class Usuario implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        if(this.tipo == tipo.ADMIN) return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
-        else return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+        if(this.tipo == Tipo.ADMIN) return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_CLIENTE"));
+        else return List.of(new SimpleGrantedAuthority("ROLE_CLIENTE"));
     }
 
     @Override
@@ -76,13 +76,4 @@ public class Usuario implements UserDetails {
         return true;
     }
 
-}
-
-
-
-
-
-enum tipo {
-    ADMIN,
-    CLIENTE
 };

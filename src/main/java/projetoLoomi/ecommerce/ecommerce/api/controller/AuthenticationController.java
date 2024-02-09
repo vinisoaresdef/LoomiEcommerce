@@ -39,6 +39,8 @@ public class AuthenticationController {
 
     @PostMapping("/register")
     public ResponseEntity register(@RequestBody @Valid RegisterDTO data){
+
+        //esse IF procura se já existe um nome registrado no banco de dados, se existir, ele lança um badRequest()
         if(this.repository.findByNome(data.nome()) != null) return ResponseEntity.badRequest().build();
 
         String encryptedPassword = new BCryptPasswordEncoder().encode(data.senha());

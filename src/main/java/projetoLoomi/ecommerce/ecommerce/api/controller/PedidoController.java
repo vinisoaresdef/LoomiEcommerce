@@ -72,6 +72,7 @@ public class PedidoController {
         return ResponseEntity.ok(pedidos);
     }
 
+
     @GetMapping("/data")
     public ResponseEntity<List<Pedido>> getPedidosEntreDatas(@RequestParam Timestamp dataInicio, @RequestParam Timestamp dataFim) {
         List<Pedido> pedidos = service.listarPedidosEntreDatas(dataInicio, dataFim);
