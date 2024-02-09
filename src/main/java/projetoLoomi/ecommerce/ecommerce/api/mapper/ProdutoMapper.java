@@ -4,11 +4,8 @@ package projetoLoomi.ecommerce.ecommerce.api.mapper;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
-import projetoLoomi.ecommerce.ecommerce.api.request.ClienteRequest;
 import projetoLoomi.ecommerce.ecommerce.api.request.ProdutoRequest;
-import projetoLoomi.ecommerce.ecommerce.api.response.ClienteResponse;
 import projetoLoomi.ecommerce.ecommerce.api.response.ProdutoResponse;
-import projetoLoomi.ecommerce.ecommerce.domain.entity.Cliente;
 import projetoLoomi.ecommerce.ecommerce.domain.entity.Produto;
 
 import java.util.List;

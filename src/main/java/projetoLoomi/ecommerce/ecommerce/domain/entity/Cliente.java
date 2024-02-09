@@ -30,8 +30,8 @@ public class Cliente {
     @Column(name = "status")
     private String status;
     @Column(name = "data_criacao")
-    private String dataCriacao;        //TODO: Corrigir para TimeStamp e avaliar no banco.
+    private String dataCriacao;        //TODO: Corrigir para TimeStamp e avaliar no banco pois está dando erro
     @Column(name = "data_atualizacao")
-    private String dataAtualizacao;    //TODO: Corrigir para TimeStamp e avaliar no banco.
+    private String dataAtualizacao;    //TODO: Corrigir para TimeStamp e avaliar no banco pois está dando erro
 
 }

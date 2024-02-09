@@ -1,6 +1,6 @@
 package projetoLoomi.ecommerce.ecommerce.api.controller;
 
-import io.swagger.models.Response;
+
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
@@ -21,8 +21,8 @@ import java.util.Optional;
 @RequestMapping("/cliente")
 public class ClienteController {
 
-   private final ClienteService service;
-      //Evitar usar Repository dentro do controller, por isso usei o ClienteService
+    private final ClienteService service;
+    //Evitar usar Repository dentro do controller, por isso usei o ClienteService
 
     private final ClienteMapper mapper;
 
@@ -35,7 +35,7 @@ public class ClienteController {
     }
 
     @GetMapping("/listarTodos")
-    public ResponseEntity<List<ClienteResponse>> listarTodos(){
+    public ResponseEntity<List<ClienteResponse>> listarTodos() {
         List<Cliente> clientes = service.listarTodos();
         List<ClienteResponse> clienteResponses = mapper.toClienteResponseList(clientes);
         return ResponseEntity.status(HttpStatus.OK).body(clienteResponses);
@@ -50,9 +50,9 @@ public class ClienteController {
     }
 
     @GetMapping("/{cliente_id}")
-    public ResponseEntity<ClienteResponse> buscarPorId(@PathVariable Long cliente_id){
+    public ResponseEntity<ClienteResponse> buscarPorId(@PathVariable Long cliente_id) {
         Optional<Cliente> optCliente = service.buscarPorId(cliente_id);
-        if(optCliente.isEmpty()){
+        if (optCliente.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.status(HttpStatus.OK).body(mapper.toClienteResponse(optCliente.get()));
